@@ -2,11 +2,8 @@
 # Autor: Sergio Hernandez
 # Descripcion: Obtiene el area de dos rectangulos a partir de sus medidas, compara las areas y dibuja los rectangulos
 
-#NOTAS: Profesor, tengo problemas con el Calico de mi maquina
-#por lo que use estos comandos para un compilador estandar.
-#Si gusta, puede probarlo con el IDLE de python.
+from Graphics import *
 
-import turtle 
 
 def obtenerArea (x,y): #Obtiene el area de un rectangulo a partir de su base y altura
     area = x * y
@@ -25,22 +22,22 @@ def checarMayorArea (uno, dos): #Checa de dos areas cual es mayor o si son igual
         mayor = "igual"
     return mayor
 
-def dibujarRectangulo (x, y): #Utiliza Turtle para dibujar un rectangulo a partir de su base y altura
-    turtle.forward(x)
-    turtle.left(90)
-    turtle.forward(y)
-    turtle.left (90)
-
-    turtle.forward(x)
-    turtle.left(90)
-    turtle.forward(y)
-    turtle.left (90)
-
+def dibujarRectangulo (turtle, x, y):#Utiliza Turtle para dibujar un rectangulo a partir de su base y altura
+    turtle.forward (x)
+    turtle.rotate (90)
+    turtle.forward (y)
+    turtle.rotate (90)
+    turtle.forward (x)
+    turtle.rotate (90)
+    turtle.forward (y)
+    turtle.rotate (90)
+    
 def main():
     xUno = float (input ("Dame el largo del primer rectangulo"))
     yUno = float (input ("Dame la altura del primer rectangulo"))
     xDos = float (input ("Dame el largo del segundo rectangulo"))
     yDos = float (input ("Dame la altura del segundo rectangulo"))
+    
 
     areaUno = obtenerArea (xUno, yUno)
     areaDos = obtenerArea (xDos, yDos)
@@ -61,11 +58,18 @@ def main():
     else:
         print ("El area mayor es la del rectangulo", mayor)
 
-    turtle.pen (pencolor = "red")
-    dibujarRectangulo(xUno, yUno)
+    ventana = Window ("Ventana",800,400)
+    tortu = Turtle ((400, 200),0) #Crea la tortuga y la centra en la ventana. Inicia en 0 grados
+    tortu.draw (ventana)
+    tortu.penDown()
 
-    turtle.pen (pencolor = "blue")
-    dibujarRectangulo(xDos, yDos)
+    tortu.pen.color = Color("red")
+    dibujarRectangulo(tortu, xUno, yUno)
+    
+    tortu.penUp()
+    tortu.penDown()
+    tortu.pen.color = Color("blue")
+    dibujarRectangulo(tortu, xDos, yDos)
 
 main()
 
