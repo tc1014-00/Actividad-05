@@ -9,7 +9,10 @@ def convertir(peso,altura):
 def idm(masa):
     b = ""
     
-    if masa>25:
+    if masa < 0:
+        b = "error"
+    
+    elif masa>25:
         b = "Sobrepeso"
     
     elif masa<26 and masa>18.5:
